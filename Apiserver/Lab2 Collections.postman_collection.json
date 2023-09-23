@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "fde416e9-117d-417e-85dd-39e6f79b8dc9",
+		"name": "Lab2 Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"roma2\",\"password\":\"roma2\",\"email\":\"roma2@roma2.roma2\"}"
+						},
+						"url": {
+							"raw": "http://localhost:6969/api/v1/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "get recipes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "xyz",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "xyz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6969/api/v1/admin/recipes/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"recipes",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get the recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "xyz",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "xyz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6969/api/v1/admin/recipes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"recipes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "xyz",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "xyz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"REJECTED\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6969/api/v1/admin/recipes/22112312312",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"recipes",
+								"22112312312"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Add recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "roma2",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "roma2",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"qweewewew\",\n    \"description\": \"askjdhaskjdhsjkdhsjdhsjdhsjhdskjahskjshdksjhdkasjhdaksjdhakjshdkjshd\",\n    \"kitchen\": \"russian\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6969/api/v1/user/add-recipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"add-recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get approved recipes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "roma2",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "roma2",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:6969/api/v1/user/recipes/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6969",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"recipes",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

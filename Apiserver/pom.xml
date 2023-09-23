@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.1.4.RELEASE</version>
+	<relativePath/> <!-- lookup parent from repository -->
+</parent>
+<groupId>com.example</groupId>
+<artifactId>kurs</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+<name>Kursach</name>
+
+<properties>
+	<java.version>11</java.version>
+	<jsonwebtoken.version>0.8.0</jsonwebtoken.version>
+	<start-class>com.example.kurs.BLSSApplication</start-class>
+
+	<deploy.jboss.host>127.0.0.1</deploy.jboss.host>
+	<deploy.jboss.port>9990</deploy.jboss.port>
+	<deploy.jboss.username>drukhary</deploy.jboss.username>
+	<deploy.jboss.password>drukhary</deploy.jboss.password>
+</properties>
+
+<dependencies>
+	<!-- Spring -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>javax.transaction</groupId>
+		<artifactId>jta</artifactId>
+		<version>1.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-tomcat</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<!-- Lombok -->
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
+		<version>1.18.24</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jboss.narayana.jta</groupId>
+		<artifactId>narayana-jta</artifactId>
+		<version>5.12.0.Final</version>
+	</dependency>
+	<!-- Spring test -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.5.1</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>io.swagger.core.v3</groupId>
+		<artifactId>swagger-annotations</artifactId>
+		<version>2.2.8</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springdoc</groupId>
+		<artifactId>springdoc-openapi-ui</artifactId>
+		<version>1.6.14</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springdoc</groupId>
+		<artifactId>springdoc-openapi-security</artifactId>
+		<version>1.6.14</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.amqp</groupId>
+		<artifactId>spring-rabbit</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.jetbrains.kotlinx</groupId>
+		<artifactId>kotlinx-serialization-core-jvm</artifactId>
+		<version>1.4.1</version>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.68</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-integration</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.integration</groupId>
+		<artifactId>spring-integration-stream</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.integration</groupId>
+		<artifactId>spring-integration-mqtt</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.mopano</groupId>
+		<artifactId>hibernate-json-org-contributor</artifactId>
+		<version>1.0</version>
+	</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
+
+</dependencies>
+
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>9</source>
+				<target>9</target>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+
+</project>
