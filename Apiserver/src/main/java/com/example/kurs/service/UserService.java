@@ -80,15 +80,6 @@ public class UserService {
         return user.get();
     }
 
-    public Boolean existsById(Long id) {
-        Optional<User> user = userRepo.findById(id);
-        if (!user.isPresent()) {
-            log.info("User with id {} not found.", id);
-            return false;
-        }
-        log.info("Found user with id {}.", id);
-        return true;
-    }
 
     public User getUser(Long id) throws UserNotFoundException {
         Optional<User> optionalUser = userRepo.findById(id);
