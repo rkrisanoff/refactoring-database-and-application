@@ -9,6 +9,7 @@ import com.example.kurs.exceptions.RecipeNotFoundException;
 import com.example.kurs.exceptions.UserAlreadyExistsException;
 import com.example.kurs.exceptions.UserNotFoundException;
 import com.example.kurs.repo.UserRepo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+import java.io.DataInput;
 import java.util.Optional;
 
 @Service
@@ -28,6 +30,7 @@ public class UserService {
 
     private final UserRepo userRepo;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ObjectMapper objectMapper;
 
     @Resource
     private final UserTransaction userTransaction;
@@ -36,12 +39,7 @@ public class UserService {
     public void register(SignupDto signupDto) throws UserAlreadyExistsException, EmailAlreadyExistsException, SystemException {
         try {
             userTransaction.begin();
-            User user = new User().builder()
-                    .username(signupDto.getUsername())
-                    .email(signupDto.getEmail())
-                    .role(Role.USER)
-                    .password(passwordEncoder.encode(signupDto.getPassword()))
-                    .build();
+            User user=objectMapper.convertValue(signupDto,User.class);
             if (existsByUsername(user.getUsername())) {
                 log.info("User {} registered. Already exists.", user.getUsername());
                 throw new UserAlreadyExistsException("User {} registered. Already exists " + user.getUsername());
