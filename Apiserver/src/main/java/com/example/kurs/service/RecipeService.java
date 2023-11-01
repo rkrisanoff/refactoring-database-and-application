@@ -51,6 +51,7 @@ public class RecipeService {
         PageRequest pageReq
                 = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
         Page<Recipe> recipes = recipeRepo.findAllByStatus(Status.MODERATION, pageReq);
+        log.info("Запрос на вывод всех рецептов на модерации - выполнен");
         return recipes.getContent();
     }
 
@@ -60,6 +61,7 @@ public class RecipeService {
         PageRequest pageReq
                 = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
         Page<Recipe> recipes = recipeRepo.findAllByStatus(Status.APPROVED, pageReq);
+        log.info("Запрос на вывод всех одобренных рецептов - выполнен");
         return recipes.getContent();
     }
 
@@ -99,6 +101,7 @@ public class RecipeService {
         if (!optionalRecipe.isPresent()) {
             throw new RecipeNotFoundException("I love you, but we have not this recipe: " + id);
         }
+        log.info("Запрос запрос на получение рецепта - выполнен");
         return optionalRecipe.get();
     }
 
@@ -124,5 +127,6 @@ public class RecipeService {
                 throw (RecipeNotFoundException) e;
             }
         }
+        log.info("Статус рецепта с id - {} изменен на - ",id,status);
     }
 }

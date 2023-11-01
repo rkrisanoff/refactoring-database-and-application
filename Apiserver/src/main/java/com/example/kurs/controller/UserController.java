@@ -6,6 +6,7 @@ import com.example.kurs.exceptions.*;
 import com.example.kurs.service.RecipeService;
 import com.example.kurs.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@Slf4j
 @RequestMapping("/api/v1/user")
 public class UserController {
 
@@ -31,7 +33,7 @@ public class UserController {
             @Valid @RequestBody RecipeDto requestRecipe,
             Authentication authentication
     ) throws IllegalKitchenException, UserAlreadyExistsException, SystemException {
-
+        log.info("Получение запроса за добавление нового рецепта {}",requestRecipe);
         if (!userService.existsByUsername(authentication.getName())) {
             throw new UserAlreadyExistsException("User with username = " +  authentication.getName() + " doesn't exits");
         }
@@ -46,7 +48,7 @@ public class UserController {
             @RequestParam(value = "sortDir", defaultValue = "ASC") String sortDir,
             @RequestParam(value = "sort", defaultValue = "id") String sort) throws InvalidSizeException, InvalidSortDirectionException, InvalidPageNumberException {
 
-
+        log.info("Получение запроса за вывод всех рецептов, с следующими параметрами page {} , size {}, sortDir {},sort {}",page,size,sortDir,sort);
         List<Recipe> recipes = recipeService.getApprovedRecipesList(page, size, sortDir, sort);
 
         return new ArrayList<>(recipes);
