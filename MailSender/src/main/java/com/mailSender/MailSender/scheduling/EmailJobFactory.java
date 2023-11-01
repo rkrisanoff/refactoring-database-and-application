@@ -3,6 +3,7 @@ package com.mailSender.MailSender.scheduling;
 import com.mailSender.MailSender.DTO.Message;
 import com.mailSender.MailSender.jobs.EmailSendJob;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +15,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 @Component
+@Slf4j
 @AllArgsConstructor
 public class EmailJobFactory {
 
@@ -58,5 +60,6 @@ public class EmailJobFactory {
         JobDetail emailSendJobDetail = createEmailSendJobDetail(message);
         Trigger emailSendTrigger = createEmailSendJobTrigger(emailSendJobDetail);
         scheduler.scheduleJob(emailSendJobDetail,emailSendTrigger);
+        log.info("Отправка письма поставлена в очередь");
     }
 }

@@ -30,6 +30,7 @@ public class MqttDataRabbitHandle {
     private final EmailJobFactory emailJobFactory;
     @RabbitHandler
     public void process(byte[] ms) throws UnsupportedEncodingException, JsonProcessingException, SchedulerException {
+        log.info("Получен запрос на отправку почты");
         String jsonString = new String(ms, "UTF-8");
         Message messageMail=objectMapper.readValue(jsonString, Message.class);
         emailJobFactory.ScheduleEmailSending(messageMail);
