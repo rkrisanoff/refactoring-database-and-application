@@ -65,23 +65,25 @@ public class RecipeService {
 
 
     private Recipe recipeDtoToRecipe(RecipeDto recipeDto) throws IllegalKitchenException {
-        Recipe recipe = new Recipe();
-        recipe.setTitle(recipeDto.getTitle());
-        recipe.setDescription(recipeDto.getDescription());
         try {
-            recipe.setKitchen(Kitchen.valueOf(recipeDto.getKitchen().toUpperCase()));
+            Recipe recipe = new Recipe().builder()
+                    .title(recipeDto.getTitle())
+                    .description(recipeDto.getDescription())
+                    .kitchen(Kitchen.valueOf(recipeDto.getKitchen().toUpperCase()))
+                    .build();
+            return recipe;
         } catch (IllegalArgumentException e) {
             throw new IllegalKitchenException("Illegal kitchen " + recipeDto.getKitchen());
         }
-        return recipe;
     }
 
     public void addRecipe(RecipeDto recipeDto, Long id) throws SystemException {
         try {
             userTransaction.begin();
-            Recipe recipe = recipeDtoToRecipe(recipeDto);
-            recipe.setAuthorId(id);
-            recipe.setStatus(Status.MODERATION);
+            Recipe recipe = recipeDtoToRecipe(recipeDto).builder()
+                    .authorId(id)
+                    .status(Status.MODERATION)
+                    .build();
             recipeRepo.save(recipe);
             userTransaction.commit();
         } catch (Exception e) {

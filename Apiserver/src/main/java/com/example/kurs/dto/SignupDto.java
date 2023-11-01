@@ -1,5 +1,6 @@
 package com.example.kurs.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
+@Builder
 public class SignupDto {
     @NotNull(message = "username must not be empty")
     @Size(min = 5, max = 256, message = " username do not match the size")

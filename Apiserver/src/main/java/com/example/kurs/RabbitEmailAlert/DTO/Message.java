@@ -1,6 +1,7 @@
 package com.example.kurs.RabbitEmailAlert.DTO;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @RequiredArgsConstructor
 @Getter
+@Builder
 public class Message {
     @NotNull(message = "subject is null")
     @Size(min = 5, max = 50, message = "subject wrong size")
