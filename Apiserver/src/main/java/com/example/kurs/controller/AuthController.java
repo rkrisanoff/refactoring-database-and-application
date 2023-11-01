@@ -4,6 +4,7 @@ import com.example.kurs.dto.SignupDto;
 import com.example.kurs.exceptions.EmailAlreadyExistsException;
 import com.example.kurs.exceptions.UserAlreadyExistsException;
 import com.example.kurs.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,13 @@ import javax.validation.Valid;
 
 
 @CrossOrigin
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@Valid @RequestBody SignupDto signupDto) throws UserAlreadyExistsException, EmailAlreadyExistsException, SystemException {

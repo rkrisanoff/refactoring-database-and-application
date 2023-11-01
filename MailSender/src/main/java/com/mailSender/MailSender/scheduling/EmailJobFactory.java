@@ -2,6 +2,7 @@ package com.mailSender.MailSender.scheduling;
 
 import com.mailSender.MailSender.DTO.Message;
 import com.mailSender.MailSender.jobs.EmailSendJob;
+import lombok.AllArgsConstructor;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +14,12 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 @Component
+@AllArgsConstructor
 public class EmailJobFactory {
 
-    @Autowired
-    private ApplicationContext applicationContext;
-    private JobDetail createEmailSendJobDetail(Message message) {
+
+    private final ApplicationContext applicationContext;
+    private final JobDetail createEmailSendJobDetail(Message message) {
 
         JobDetailFactoryBean factory = new JobDetailFactoryBean();
         factory.setJobClass(EmailSendJob.class);
