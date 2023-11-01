@@ -36,11 +36,12 @@ public class UserService {
     public void register(SignupDto signupDto) throws UserAlreadyExistsException, EmailAlreadyExistsException, SystemException {
         try {
             userTransaction.begin();
-            User user = new User();
-            user.setUsername(signupDto.getUsername());
-            user.setEmail(signupDto.getEmail());
-            user.setRole(Role.USER);
-            user.setPassword(passwordEncoder.encode(signupDto.getPassword()));
+            User user = new User().builder()
+                    .username(signupDto.getUsername())
+                    .email(signupDto.getEmail())
+                    .role(Role.USER)
+                    .password(passwordEncoder.encode(signupDto.getPassword()))
+                    .build();
             if (existsByUsername(user.getUsername())) {
                 log.info("User {} registered. Already exists.", user.getUsername());
                 throw new UserAlreadyExistsException("User {} registered. Already exists " + user.getUsername());
