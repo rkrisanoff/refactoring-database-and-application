@@ -9,6 +9,7 @@ import com.example.kurs.exceptions.RecipeNotFoundException;
 import com.example.kurs.exceptions.UserAlreadyExistsException;
 import com.example.kurs.exceptions.UserNotFoundException;
 import com.example.kurs.repo.UserRepo;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,15 +22,15 @@ import javax.transaction.UserTransaction;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 @Slf4j
 public class UserService {
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+
+    private final UserRepo userRepo;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Resource
-    private UserTransaction userTransaction;
+    private final UserTransaction userTransaction;
 
 
     public void register(SignupDto signupDto) throws UserAlreadyExistsException, EmailAlreadyExistsException, SystemException {

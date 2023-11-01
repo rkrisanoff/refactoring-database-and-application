@@ -9,6 +9,7 @@ import com.example.kurs.exceptions.InvalidSizeException;
 import com.example.kurs.exceptions.InvalidSortDirectionException;
 import com.example.kurs.exceptions.RecipeNotFoundException;
 import com.example.kurs.service.RecipeService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +22,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/admin")
 
-
+@AllArgsConstructor
 public class AdminController {
-    @Autowired
-    RecipeService recipeService;
+
+    private final RecipeService recipeService;
 
 
     @GetMapping("/recipes/all")

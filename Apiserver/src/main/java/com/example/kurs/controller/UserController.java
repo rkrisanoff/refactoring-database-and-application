@@ -5,6 +5,7 @@ import com.example.kurs.entity.Recipe;
 import com.example.kurs.exceptions.*;
 import com.example.kurs.service.RecipeService;
 import com.example.kurs.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/v1/user")
 public class UserController {
-    @Autowired
-    RecipeService recipeService;
-    @Autowired
-    UserService userService;
+
+   private final RecipeService recipeService;
+
+    private final UserService userService;
 
     @PostMapping("/add-recipe")
     public ResponseEntity<String> addRecipe(

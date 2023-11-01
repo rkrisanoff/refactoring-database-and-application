@@ -7,6 +7,7 @@ import com.example.kurs.entity.Recipe;
 import com.example.kurs.entity.Status;
 import com.example.kurs.exceptions.*;
 import com.example.kurs.repo.RecipeRepo;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,12 +23,13 @@ import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
+@AllArgsConstructor
 @Service
 public class RecipeService {
-    @Autowired
-    private RecipeRepo recipeRepo;
-    @Autowired
-    MailService mailService;
+
+    private final RecipeRepo recipeRepo;
+
+    private final MailService mailService;
     private final Set<String> sortDirs = Set.of("ASC", "DESC");
     @Resource
     private UserTransaction userTransaction;
