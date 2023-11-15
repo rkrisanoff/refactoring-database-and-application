@@ -36,7 +36,10 @@ public class UserService {
     private final UserTransaction userTransaction;
 
 
-    public void register(SignupDto signupDto) throws UserAlreadyExistsException, EmailAlreadyExistsException, SystemException {
+    public void register(SignupDto signupDto) throws
+            UserAlreadyExistsException,
+            EmailAlreadyExistsException,
+            SystemException {
         try {
             userTransaction.begin();
             User user=objectMapper.convertValue(signupDto,User.class);
