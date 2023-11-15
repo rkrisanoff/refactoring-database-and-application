@@ -19,4 +19,13 @@ public class MailControllerAdvice {
         Response response = new Response(responseString.toString());
         return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Response> IllegalArgumentExceptionException(IllegalArgumentException e) {
+        StringBuilder responseString = new StringBuilder();
+        Response response = new Response(responseString.toString());
+        return new ResponseEntity<Response>(response, HttpStatus.BAD_REQUEST);
+    }
+
+
 }
